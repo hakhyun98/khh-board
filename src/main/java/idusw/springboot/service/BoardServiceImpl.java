@@ -9,6 +9,7 @@ import idusw.springboot.repository.BoardRepository;
 import idusw.springboot.repository.ReplyRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,7 +20,9 @@ import java.util.function.Function;
 
 @RequiredArgsConstructor
 @Service
+
 public class BoardServiceImpl implements BoardService {
+    @Autowired
     private BoardRepository boardRepository;
     private ReplyRepository replyRepository;
     
@@ -46,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
         Page<Object[]> result = boardRepository.searchPage(
                 pageRequestDTO.getType(),
                 pageRequestDTO.getKeyword(),
-                pageRequestDTO.getPageable(Sort.by("bno").descending()));
+                pageRequestDTO.getPageable(Sort.by("bno").ascending()));
         Function<Object[], Board> fn = (entity -> entityToDto((BoardEntity) entity[0],
                 (MemberEntity) entity[1], (Long) entity[2]));
         return new PageResultDTO<>(result, fn, 5);
@@ -55,7 +58,12 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public int updateBoard(Board board) {
-        return 0;
+        BoardEntity entity = dtoToEntity(board);
+
+        if(boardRepository.save(entity) != null) // 저장 성공
+            return 1;
+        else
+            return 0;
     }
     
     @Transactional

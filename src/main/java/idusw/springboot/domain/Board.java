@@ -9,20 +9,24 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @ToString
 @EqualsAndHashCode
 
-public class Board {
+public class Board { // 5 fields
+    // board
     private Long bno; // 유일성있음
     private String title;
     private String content;
 
+    // join
     private Long writerSeq;
     private String writerEmail;
     private String writerName;
 
+    // auditing
     private LocalDateTime regDate;
     private LocalDateTime modDate;
 
-    private Long replyCount; // JPA에서 count() 함수로 값을 채움
+    private Long replyCount; // JPA의 count()
 }

@@ -1,9 +1,12 @@
 package idusw.springboot.controller;
 
+import idusw.springboot.domain.Board;
 import idusw.springboot.domain.Member;
 import idusw.springboot.domain.PageRequestDTO;
 import idusw.springboot.domain.PageResultDTO;
+import idusw.springboot.entity.BoardEntity;
 import idusw.springboot.entity.MemberEntity;
+import idusw.springboot.repository.BoardRepository;
 import idusw.springboot.repository.MemberRepository;
 import idusw.springboot.service.MemberService;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -12,9 +15,12 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+//import sun.security.krb5.internal.ccache.MemoryCredentialsCache;
 
 import java.util.List;
 import java.util.stream.IntStream;
+
+//import static java.net.InetAddress.CachedAddresses.seq;
 
 @SpringBootTest
 @Log4j2
@@ -23,6 +29,12 @@ public class MemberControllerTests {
     MemberService memberService;
     @Autowired
     MemberRepository memberRepository;
+    @Autowired
+    BoardRepository boardRepository;
+
+    MemberEntity memberEntity = new MemberEntity(1L,"khh@induk.com","khh","1234");
+
+
 
     @Test
     @Transactional  // could not initialize proxy - no Session : Lazy fetch 로 인한 오류
@@ -64,15 +76,16 @@ public class MemberControllerTests {
     @Test
     void createMember() {
         Member member = Member.builder()
-                .email("13@13.com")
-                .name("13")
-                .pw("13")
+                .email("root@induk.ac.kr")
+                .name("root")
+                .pw("1234")
                 .build();
         if(memberService.create(member) > 0 ) // 정상적으로 레코드의 변화가 발생하는 경우 영향받는 레코드 수를 반환
             System.out.println("등록 성공");
         else
             System.out.println("등록 실패");
     }
+
 
 
 

@@ -3,6 +3,9 @@ package idusw.springboot.controller;
 import idusw.springboot.domain.Board;
 import idusw.springboot.domain.Member;
 import idusw.springboot.domain.PageRequestDTO;
+import idusw.springboot.domain.PageResultDTO;
+import idusw.springboot.entity.BoardEntity;
+import idusw.springboot.entity.MemberEntity;
 import idusw.springboot.service.BoardService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,6 +22,11 @@ public class BoardController {
     public BoardController(BoardService boardService) {
         // Spring Framework 가 BoardService 객체를 주입, boardService(주입될 객체의 참조변수)
         this.boardService = boardService;
+    }
+    @GetMapping("/logout")
+    public String logoutMember() {
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/reg-form")
@@ -77,18 +85,18 @@ public class BoardController {
         return "/boards/upform";
     }
 
-    @PutMapping("/{bno}")
+    @PutMapping("/{bno}/update")
     public String putBoard(@ModelAttribute("board") Board board, Model model) {
         boardService.updateBoard(board);
         model.addAttribute(boardService.findBoardById(board));
         return "redirect:/boards/" + board.getBno();
     }
 
-    @GetMapping("/{bno}/del-form")
+    @GetMapping("/{bno}/delete")
     public String getDelForm(@PathVariable("bno") Long bno, Model model) {
         Board board = boardService.findBoardById(Board.builder().bno(bno).build());
         model.addAttribute("board", board);
-        return "/boards/del-form";
+        return "/boards/list";
     }
 
     @DeleteMapping("/{bno}")

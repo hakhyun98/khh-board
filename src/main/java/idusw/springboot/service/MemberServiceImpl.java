@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,6 +176,13 @@ public class MemberServiceImpl implements MemberService {
          */
         booleanBuilder.and(conditionBuilder);
         return booleanBuilder;
+    }
+    public int checkEmail(Member m){
+        List<MemberEntity> memberEntityList = memberRepository.getMemberEntitiesByEmail(m.getEmail());
+        if(memberEntityList.size()>0)
+            return 1;
+        else
+            return 0;
     }
 
 }
