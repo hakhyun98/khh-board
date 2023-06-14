@@ -37,6 +37,8 @@ public class MemberServiceImpl implements MemberService {
                 .email(m.getEmail())
                 .name(m.getName())
                 .pw(m.getPw())
+                .phone(m.getPhone())
+                .address(m.getAddress())
                 .build();
         if(memberRepository.save(entity) != null) // 저장 성공
             return 1;
@@ -52,6 +54,8 @@ public class MemberServiceImpl implements MemberService {
         result.setSeq(e.getSeq());
         result.setEmail(e.getEmail());
         result.setName(e.getName());
+        result.setPhone(e.getPhone());
+        result.setAddress(e.getAddress());
         return result;
     }
 
@@ -67,6 +71,8 @@ public class MemberServiceImpl implements MemberService {
                         .email(e.getEmail())
                         .name(e.getName())
                         .pw(e.getPw())
+                        .phone(e.getPhone())
+                        .address(e.getAddress())
                         .regDate(e.getRegDate())
                         .modDate(e.getModDate())
                         .build();
@@ -165,10 +171,10 @@ public class MemberServiceImpl implements MemberService {
         if(type.contains("n")) { // email로 검색
             conditionBuilder.or(qMemberEntity.name.contains(keyword));
         }
-        /*
         if(type.contains("p")) { // phone로 검색
             conditionBuilder.or(qMemberEntity.phone.contains(keyword));
         }
+        /*
         if(type.contains("a")) { // address로 검색
             conditionBuilder.or(qMemberEntity.address.contains(keyword));
         } // 조건을 전부 줄 수도 있으니 if else문 아님

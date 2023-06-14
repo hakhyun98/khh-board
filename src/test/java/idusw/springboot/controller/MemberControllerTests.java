@@ -32,7 +32,7 @@ public class MemberControllerTests {
     @Autowired
     BoardRepository boardRepository;
 
-    MemberEntity memberEntity = new MemberEntity(1L,"khh@induk.com","khh","1234");
+   // MemberEntity memberEntity = new MemberEntity(1L,"khh@induk.com","khh","1234");
 
 
 
@@ -62,17 +62,31 @@ public class MemberControllerTests {
     @Test
     void initializeMember() {
         // Integer 데이터 흐름, Lambda 식 - 함수형 언어의 특징을 활용
-        IntStream.rangeClosed(1, 101).forEach(i -> {
+        IntStream.rangeClosed(1, 50).forEach(i -> {
             MemberEntity member = MemberEntity.builder()
                     .seq(Long.valueOf(i))
-                    .email("ab" + i + "@induk.ac.kr") // 200412045 -> 04045
-                    .pw("pw" + i)
-                    .name("name" + i)
+                    .email("khh" + i + "@induk.ac.kr") // 200412045 -> 04045
+                    .pw("1234")
+                    .name("khh" + i)
+                    .phone("")
+                    .address("inuk" + 1)
                     .build();
             memberRepository.save(member);
         });
     }
-
+//    @Test
+//    void initializeBoards() {
+//        // Integer 데이터 흐름, Lambda 식 - 함수형 언어의 특징을 활용
+//        IntStream.rangeClosed(1, 50).forEach(i -> {
+//            BoardEntity board = BoardEntity.builder()
+//                    .bno(Long.valueOf(i))
+//                    .content("khh" + i) // 200412045 -> 04045
+//                    .title("khh" + i)
+//                    .writer(memberEntity)
+//                    .build();
+//            boardRepository.save(board);
+//        });
+//    }
     @Test
     void createMember() {
         Member member = Member.builder()

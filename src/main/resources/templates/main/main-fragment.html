@@ -201,7 +201,11 @@
                     </form>
                 </div>
             </li>
-
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{'/members/' + ${session.mb.seq}}">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Detail</span></a>
+            </li>
             <!-- Nav Item - Alerts -->
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{'/members/' + ${session.mb.seq}}">

@@ -27,6 +27,7 @@
                         <li class="nav-item"><a class="nav-link" href="redirect:/list">board</a></li>
                         <li class="nav-item"><a class="nav-link" href="/boards/reg-form">board register</a></li>
                         <li class="nav-item"><a class="nav-link" href="/members/logout">logout</a></li>
+                        <li th:if="${session.mb.name=='root'}" class="nav-item"><a class="nav-link" href="/members">members</a></li>
                     </ul>
                 </div>
             </div>
@@ -66,8 +67,7 @@
                                     <h2 class="card-title h4"><span th:text="${board.title}" ></span></h2>
                                     <p class="card-text"><span th:text="${board.content}" ></span></p>
                                     <a class="btn btn-primary" th:href="@{'/boards/' + ${board.bno}}">Read more →</a>
-                                    <a class="btn btn-primary" th:href="@{/boards/{bno}/delete(bno=${board.bno})}">Delete</a>
-                                    <a class="btn btn-primary" th:href="@{/boards/{bno}/up-form(bno=${board.bno})}">Update</a>
+                                    <p class="card-text">댓글 수 : [[${board.replyCount}]]</p>
                                 </div>
                             </div>
 

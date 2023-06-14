@@ -18,7 +18,7 @@ public interface MemberService {
     int update(Member m);
     int delete(Member m);
     Member login(Member m);
-   int checkEmail(Member m);
+    int checkEmail(Member m);
 
     // java 1.8 : 인터페이스가 기본 메소드를 가질 수 있도록 함.
     PageResultDTO<Member, MemberEntity> getList(PageRequestDTO requestDTO);
@@ -29,6 +29,8 @@ public interface MemberService {
                 .email(dto.getEmail())
                 .name(dto.getName())
                 .pw(dto.getPw())
+                .phone(dto.getPhone())
+                .address(dto.getAddress())
                 .build();
         return entity;
     }
@@ -39,6 +41,8 @@ public interface MemberService {
                 .email(entity.getEmail())
                 .name(entity.getName())
                 .pw(entity.getPw())
+                .phone(entity.getPhone())
+                .address(entity.getAddress())
                 .regDate(entity.getRegDate())
                 .modDate(entity.getModDate())
                 .build();
