@@ -58,8 +58,9 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public int updateBoard(Board board) {
-        BoardEntity entity = dtoToEntity(board);
-
+        BoardEntity entity = new BoardEntity();
+        entity.setTitle(board.getTitle());
+        entity.setContent(board.getContent());
         if(boardRepository.save(entity) != null) // 저장 성공
             return 1;
         else

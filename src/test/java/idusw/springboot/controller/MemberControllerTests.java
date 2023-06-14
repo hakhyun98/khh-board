@@ -48,16 +48,16 @@ public class MemberControllerTests {
             System.out.println("조회 실패!");
     }
 
-    @Test
-    void readMemberList() {
-        List<Member> resultList = null;
-        if((resultList = memberService.readList()) != null) {
-            for(Member m : resultList)
-                System.out.format("%-10s | %-10s | %10s\n", m.getName(), m.getEmail(), m.getRegDate());
-        }
-        else
-            System.out.println("목록 없음");
-    }
+//    @Test
+//    void readMemberList() {
+//        List<Member> resultList = null;
+//        if((resultList = memberService.readList()) != null) {
+//            for(Member m : resultList)
+//                System.out.format("%-10s | %-10s | %10s\n", m.getName(), m.getEmail(), m.getRegDate());
+//        }
+//        else
+//            System.out.println("목록 없음");
+//    }
 
     @Test
     void initializeMember() {

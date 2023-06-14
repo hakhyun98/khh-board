@@ -8,11 +8,13 @@ import idusw.springboot.domain.PageResultDTO;
 import idusw.springboot.entity.MemberEntity;
 import idusw.springboot.entity.QMemberEntity;
 import idusw.springboot.repository.MemberRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;

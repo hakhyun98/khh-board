@@ -70,19 +70,21 @@ public class MemberController {
         session.invalidate();
         return "redirect:/";
     }
-/*
-    @GetMapping(value = {"", "/"})
-    public String listMember(Model model) {
-        List<Member> result = null;
-        if((result = memberService.readList()) != null) {
-            model.addAttribute("list", result);
-            return "/members/list";
-        }
-        else
-            return "/errors/404";
-    }
 
- */
+//    @GetMapping(value = {"", "/"})
+//    public String listMember(Model model, HttpSession session) {
+//        Member sessionMember = (Member) session.getAttribute("member");
+//        model.addAttribute("sessionMember", sessionMember);
+//        List<Member> result = null;
+//        if((result = memberService.readList()) != null) {
+//            model.addAttribute("list", result);
+//            return "/members/list";
+//        }
+//        else
+//            return "/errors/404";
+//    }
+
+
     @GetMapping("/register-form")
     public String getRegisterForm(Model model) { // form 요청 -> view (template engine)
         model.addAttribute("member", Member.builder().build());

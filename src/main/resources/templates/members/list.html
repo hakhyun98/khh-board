@@ -219,7 +219,7 @@
                                                 </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                <tr th:each="member : ${result.dtoList}">
+                                                <tr th:each="member : ${result.dtoList}" th:if="${sessionMember != null && sessionMember.name == 'root'}">
                                                     <td>[[${member.seq}]]</td>
                                                     <td>[[${member.email}]]</td>
                                                     <td>[[${member.name}]]</td>

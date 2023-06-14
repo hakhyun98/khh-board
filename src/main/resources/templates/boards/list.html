@@ -67,7 +67,7 @@
                                     <p class="card-text"><span th:text="${board.content}" ></span></p>
                                     <a class="btn btn-primary" th:href="@{'/boards/' + ${board.bno}}">Read more →</a>
                                     <a class="btn btn-primary" th:href="@{/boards/{bno}/delete(bno=${board.bno})}">Delete</a>
-                                    <a class="btn btn-primary" th:href="@{/boards/{bno}/update(bno=${board.bno})}">Update</a>
+                                    <a class="btn btn-primary" th:href="@{/boards/{bno}/up-form(bno=${board.bno})}">Update</a>
                                 </div>
                             </div>
 

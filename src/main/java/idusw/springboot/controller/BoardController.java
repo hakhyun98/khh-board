@@ -82,14 +82,14 @@ public class BoardController {
     public String getUpForm(@PathVariable("bno") Long bno, Model model) {
         Board board = boardService.findBoardById(Board.builder().bno(bno).build());
         model.addAttribute("board", board);
-        return "/boards/upform";
+        return "/boards/up-form";
     }
 
     @PutMapping("/{bno}/update")
     public String putBoard(@ModelAttribute("board") Board board, Model model) {
         boardService.updateBoard(board);
         model.addAttribute(boardService.findBoardById(board));
-        return "redirect:/boards/" + board.getBno();
+        return "redirect:/boards";
     }
 
     @GetMapping("/{bno}/delete")
